@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>🔀 Bedrock Tunnel Endpoint</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            background: #0d2029; /* Dark background */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .splash-container {
+            max-width: 600px;
+            padding: 20px;
+            position: relative;
+            top: -50px;
+        }
+
+        h1 {
+            font-size: 2.65em;
+            color: #55c2ef;
+            text-shadow: 0 0 15px #668ceb;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #add8e6; /* Light blue text */
+        }
+
+        a { text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        li { margin-bottom: 5px; }
+
+        .instructions {
+            margin-top: 30px;
+            border: 1px solid #9db1f8;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 1em;
+            text-align: left;
+            background-repeat: unset !important;
+            background-image: radial-gradient(#304438 19.6%, transparent 19.6%);
+            background-position: 10px 10px;
+            background-size: 10px 10px;
+        }
+
+        .accent { color: rgb(105, 255, 180) !important; }
+        .accent2 { color: #47b5ff !important; }
+        .accent3 { color: #fff569 !important; }
+        .accent4 { color: #bafff78a !important; }
+
+        .margin-top-0 { margin-top: 0; }
+        .margin-top-5 { margin-top: 5px; }
+        .margin-top-10 { margin-top: 10px; }
+        .margin-right-0 { margin-right: 0; }
+        .margin-right-5 { margin-right: 5px; }
+        .margin-right-10 { margin-right: 10px; }
+        .margin-bottom-0 { margin-bottom: 0; }
+        .margin-bottom-5 { margin-bottom: 5px; }
+        .margin-bottom-10 { margin-bottom: 10px; }
+        .margin-left-0 { margin-left: 0; }
+        .margin-left-5 { margin-left: 5px; }
+        .margin-left-10 { margin-left: 10px; }
+        .font-size-0p8em { font-size: 0.8em; }
+        .font-size-0p9em { font-size: 0.9em; }
+        .font-size-1p1em { font-size: 1.1em; }
+        .font-size-1p2em { font-size: 1.2em; }
+        .font-size-1p5em { font-size: 1.5em; }
+        .font-size-2em { font-size: 2em; }
+        .font-size-3em { font-size: 3em; }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <h1 class="margin-bottom-0">🔀 Bedrock Tunnel Endpoint</h1>
+        <p class="margin-top-5">Welcome to a pain free way to infer AWS Bedrock models!</p>
+        <div class="instructions">
+            <p class="margin-top-0">
+                This server has the following endpoints:<br>
+                <ul>
+                    <li>
+                        <span class="accent2">GET </span><span class="accent3">/</span> <span class="accent4">⇠ This page</span>
+                    </li>
+                    <li>
+                        <span class="accent2">GET </span><span class="accent3">/models</span> <span class="accent4">⇠ List supported models (names and ids)</span>
+                    </li>
+                    <li>
+                        <span class="accent2">POST </span><span class="accent3">/</span> <span class="accent4">⇠ Infer a model</span>
+                        <div class="font-size-0p9em accent4 margin-top-10">
+                            Use the OpenAI SDK to send a POST request to this endpoint.<br>
+                            The <span class="accent2">request body</span> must:
+                            <ol class="margin-top-10">
+                                <li>
+                                    use a <span class="accent2">modelName</span> or <span class="accent2">modelId</span> from the list of 🪨 <a class="accent" href="https://github.com/jparkerweb/bedrock-tunnel?tab=readme-ov-file#supported-models" target="bedrock-tunnel">Bedrock Tunnel</a> supported models (get the list from the <span class="accent3">/models</span> <span class="accent2">GET</span> endpoint)
+                                </li>
+                                <li>
+                                    present the <span class="accent2">messages</span> array in the standard <span class="accent2">role : content</span> format
+                                </li>
+                            </ol>
+                        </div>
+                    </li>
+                </ul>
+            </p>
+            <p class="margin-bottom-0">
+                Read the docs at the repo here:<br>
+                &nbsp;&nbsp;&nbsp;⇢ 📘 <a class="accent" href="https://github.com/jparkerweb/bedrock-tunnel-endpoint" target="bedrock-tunnel-endpoint">https://github.com/jparkerweb/bedrock-tunnel-endpoint</a>
+            </p>
+        </div>
+        <p class="font-size-0p9em margin-top-20">Powered by: 🪨 <a class="accent" href="https://github.com/jparkerweb/bedrock-tunnel" target="bedrock-tunnel">Bedrock Tunnel</a></p>
+    </div>
+</body>
+</html>
