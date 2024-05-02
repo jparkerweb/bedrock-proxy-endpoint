@@ -1,7 +1,7 @@
 {
   "name": "bedrock-tunnel-endpoint",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "description": "🔀 Bedrock Tunnel Endpoint ⇢ Spin up your own custom OpenAI API server endpoint for easy AWS Bedrock inference (using standard `baseUrl`, and `apiKey` params)",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bedrock-tunnel": "1.0.8",
+    "bedrock-tunnel": "1.0.9",
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2"
