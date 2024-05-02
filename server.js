@@ -91,15 +91,24 @@ app.post('/chat/completions', async (req, res) => {
         stream = true
     } = req.body;
 
+    // validate messages array exists
     if (!messages.length) {
         res.status(400).send('Messages array is empty');
         return;
     }
 
+    // extract AWS credentials from the request
     const bearerToken = req.rawHeaders.find(item => item.startsWith("Bearer "));
     const token = bearerToken ? bearerToken.substring(7) : null;
-    const { AWS_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = extractAWSCreds(token);
+    const tokenParts = extractAWSCreds(token);
+    if (tokenParts.error) {
+        res.status(401).send(tokenParts.message);
+        return;
+    } else {
+        var { AWS_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = tokenParts.credentials;
+    }
     
+    // validate AWS credentials
     if (!AWS_ACCESS_KEY_ID || !AWS_SECRET_ACCESS_KEY) {
         res.status(401).send('Unauthorized');
         return;
@@ -125,22 +134,32 @@ app.post('/chat/completions', async (req, res) => {
         top_p: top_p,
     };
 
+    // set the response headers
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive'
     });
 
+    // create a variable to hold the complete response
     let completeResponse = '';
-    if (openaiChatCompletionsCreateObject.stream) { // streamed call
+
+    // check if the call is streamed
+    if (openaiChatCompletionsCreateObject.stream) {
+        // -------------------
+        // -- streamed call --
+        // -------------------
         try {
             for await (const chunk of awsBedrockTunnel(awsCreds, openaiChatCompletionsCreateObject, {logging: CONSOLE_LOGGING})) {
-                completeResponse += chunk;                
-                if (CONSOLE_LOGGING) { stdout.write(chunk); }
+                // collect the response chunks
+                completeResponse += chunk;
+                // create a data object and send to the client
                 const data = {choices: [{delta: {
                     content: chunk
                 }}]};
                 res.write(`data: ${JSON.stringify(data)}\n\n`);
+                // log the response to the console
+                if (CONSOLE_LOGGING) { stdout.write(chunk); }
             }
         } catch (error) {
             console.error("Error during streaming:", error);
@@ -149,13 +168,19 @@ app.post('/chat/completions', async (req, res) => {
             res.end();
         }
         res.end();
-    } else { // unstreamed call
+    } else {
+        // ---------------------
+        // -- unstreamed call --
+        // ---------------------
         const response = await awsBedrockTunnel(awsCreds, openaiChatCompletionsCreateObject, {logging: CONSOLE_LOGGING});
         for await (const data of response) {
+            // decode and parse the response data
             const jsonString = new TextDecoder().decode(data.body);
             const jsonResponse = JSON.parse(jsonString);
+            // collect the response chunks
             completeResponse += jsonResponse.generation;
         }
+        // create a data object and send to the client
         const data = {choices: [{delta: {
             content: completeResponse
         }}]};
@@ -169,12 +194,14 @@ app.post('/chat/completions', async (req, res) => {
 // -- start the server --
 // ----------------------
 if (HTTP_ENABLED) {
+    // start the HTTP server
     const httpServer = http.createServer(app);
     httpServer.listen(HTTP_PORT, () => {
         console.log(`HTTP Server listening on port ${HTTP_PORT}`);
     });
 }
 if (HTTPS_ENABLED) {
+    // start the HTTPS server
     const httpsServer = https.createServer({
         key: fs.readFileSync(HTTPS_KEY_PATH, 'utf-8'),
         cert: fs.readFileSync(HTTPS_CERT_PATH, 'utf-8')
