@@ -72,6 +72,9 @@ Before getting started, make sure you have the following installed:
 ### Usage
 
 - Start the server via: `node server`  
+
+  <img src="docs/console.png">  
+  
   You are now ready to make a standard chat completions to the server.
 
 - Important values
