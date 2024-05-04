@@ -74,7 +74,7 @@ Before getting started, make sure you have the following installed:
 - Start the server via: `node server`  
 
   <img src="docs/console.png">  
-  
+
   You are now ready to make a standard chat completions to the server.
 
 - Important values
@@ -134,3 +134,9 @@ for await (const chunk of chatCompletion) {
 Point your browser to the root of your endpoint server to view the info page: (example: `http://localhost`)  
 
 <img src="docs/bedrock-tunnel-endpoint.jpg" style="max-width:700px">
+
+---
+
+### Note
+
+Alternativly you can incorporate 🪨 <a href="https://github.com/jparkerweb/bedrock-tunnel" target="bedrockTunnel">`Bedrock Tunnel`</a> core directly into your code base. If you would like to explore that option checkout the npm package here: https://www.npmjs.com/package/bedrock-tunnel
