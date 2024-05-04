@@ -27,6 +27,9 @@ import {
     listBedrockTunnelSupportedModels
 } from "bedrock-tunnel";
 
+console.log("    ========================== ENDPOINT ===========================");
+console.log("");
+
 // -----------------------------------
 // -- import server and its modules --
 // -----------------------------------
@@ -81,6 +84,8 @@ app.post('/test/chat/completions', async (req, res) => {
 // -- Endpoint: infer AWS Bedrock Tunnel Chat Completions --
 // ---------------------------------------------------------
 app.post('/chat/completions', async (req, res) => {
+    if (CONSOLE_LOGGING) { console.log("\n\n--new '/chat/completions' request --------------------------------"); }
+
     // Extract parameters from the incoming request
     const {
         messages = [],
@@ -150,7 +155,7 @@ app.post('/chat/completions', async (req, res) => {
         // -- streamed call --
         // -------------------
         try {
-            for await (const chunk of awsBedrockTunnel(awsCreds, openaiChatCompletionsCreateObject, {logging: CONSOLE_LOGGING})) {
+            for await (const chunk of awsBedrockTunnel(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING })) {
                 // collect the response chunks
                 completeResponse += chunk;
                 // create a data object and send to the client
@@ -172,7 +177,7 @@ app.post('/chat/completions', async (req, res) => {
         // ---------------------
         // -- unstreamed call --
         // ---------------------
-        const response = await awsBedrockTunnel(awsCreds, openaiChatCompletionsCreateObject, {logging: CONSOLE_LOGGING});
+        const response = await awsBedrockTunnel(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING });
         for await (const data of response) {
             // decode and parse the response data
             const jsonString = new TextDecoder().decode(data.body);
