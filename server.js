@@ -18,16 +18,16 @@ const HTTPS_KEY_PATH = process.env.HTTPS_KEY_PATH;
 const HTTPS_CERT_PATH = process.env.HTTPS_CERT_PATH;
 
 // --------------------------------------------
-// -- import functions from bedrock-tunnel   --
-// --     - awsBedrockTunnel                 --
-// --     - listBedrockTunnelSupportedModels --
+// -- import functions from bedrock-wrapper  --
+// --     - bedrockWrapper                    --
+// --     - listBedrockWrapperSupportedModels --
 // --------------------------------------------
-import {
-    awsBedrockTunnel,
-    listBedrockTunnelSupportedModels
-} from "bedrock-tunnel";
+import { 
+    bedrockWrapper,
+    listBedrockWrapperSupportedModels
+} from "bedrock-wrapper";
 
-console.log("    ========================== ENDPOINT ===========================");
+console.log("    ============================ PROXY ENDPOINT =============================");
 console.log("");
 
 // -----------------------------------
@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 // -- Endpoint: list supported models --
 // -------------------------------------
 app.get('/models', (req, res) => {
-    listBedrockTunnelSupportedModels().then(supportedModels => {
+    listBedrockWrapperSupportedModels().then(supportedModels => {
         res.json(supportedModels);
     }).catch(err => {
         res.status(500).send('Failed to fetch models');
@@ -73,16 +73,16 @@ app.post('/test/chat/completions', async (req, res) => {
     });
 
     const data = {choices: [{delta: {
-        content: "(ツ) → Test message from Bedrock Tunnel Endpoint"
+        content: "(ツ) → Test message from Bedrock Proxy Endpoint"
     }}]};
     res.write(`data: ${JSON.stringify(data)}\n\n`);
 
     res.end();
 });
 
-// ---------------------------------------------------------
-// -- Endpoint: infer AWS Bedrock Tunnel Chat Completions --
-// ---------------------------------------------------------
+// --------------------------------------------------------
+// -- Endpoint: infer AWS Bedrock Proxy Chat Completions --
+// --------------------------------------------------------
 app.post('/chat/completions', async (req, res) => {
     if (CONSOLE_LOGGING) { console.log("\n\n--new '/chat/completions' request --------------------------------"); }
 
@@ -155,7 +155,7 @@ app.post('/chat/completions', async (req, res) => {
         // -- streamed call --
         // -------------------
         try {
-            for await (const chunk of awsBedrockTunnel(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING })) {
+            for await (const chunk of bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING })) {
                 // collect the response chunks
                 completeResponse += chunk;
                 // create a data object and send to the client
@@ -177,7 +177,7 @@ app.post('/chat/completions', async (req, res) => {
         // ---------------------
         // -- unstreamed call --
         // ---------------------
-        const response = await awsBedrockTunnel(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING });
+        const response = await bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING });
         for await (const data of response) {
             // decode and parse the response data
             const jsonString = new TextDecoder().decode(data.body);

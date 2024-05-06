@@ -1,13 +1,13 @@
- # 🔀 Bedrock Tunnel Endpoint
+ # 🔀 Bedrock Proxy Endpoint
  Spin up your own custom OpenAI API server endpoint for easy AWS Bedrock LLM text inference (using standard `baseUrl`, and `apiKey` params)
 
  ---
 
-### Why Bedrock Tunnel Endpoint?
+### Why Bedrock Proxy Endpoint?
 
 Are you are stuck with using AWS Bedrock for all LLM text inference, but you want to keep your application platform agnostic?  Are you tired of figuring out how to format your LLM inference calls to work with the Bedrock SDK? Are you going crazy with all the differences between configuration from model to model?
 
-- `Bedrock Tunnel Endpoint` makes it easy to continue using the OpenAI API client that you are use to by standing up your own OpenAI text compatible endpoint that will proxy all your calls to Bedrock in a compatible way.
+- `Bedrock Proxy Endpoint` makes it easy to continue using the OpenAI API client that you are use to by standing up your own OpenAI text compatible endpoint that will proxy all your calls to Bedrock in a compatible way.
 
 - Great for getting existing OpenAI API compatible applications working with AWS Bedrock.
 
@@ -25,13 +25,13 @@ Before getting started, make sure you have the following installed:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/jparkerweb/bedrock-tunnel-endpoint.git
+    git clone https://github.com/jparkerweb/bedrock-proxy-endpoint.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd bedrock-tunnel-endpoint
+    cd bedrock-proxy-endpoint
     ```
 
 3. Install the dependencies:
@@ -61,7 +61,7 @@ Before getting started, make sure you have the following installed:
 
 ### Authentication
 
-`Bedrock Tunnel` authenticates with AWS via `IAM`. Since the OpenAI API intance accpets an API Key we will utilize this value to hold your credentials. Construct your `apiKey` for inference in the next step following this format:
+`Bedrock Proxy` authenticates with AWS via `IAM`. Since the OpenAI API intance accpets an API Key we will utilize this value to hold your credentials. Construct your `apiKey` for inference in the next step following this format:
 
 - `AWS_REGION` + `.` + `AWS_ACCESS_KEY_ID` + `.` + `AWS_SECRET_ACCESS_KEY`
 - example `apiKey` value:  
@@ -81,7 +81,7 @@ Before getting started, make sure you have the following installed:
   - `baseUrl`: Root address of server based on your `.env` configuration.
   - `apiKey`: Descibed in the *Authentication* section above.
   - `messages`: Array of objects in role / content format.
-  - `model`: This can be either the `modelName` or `modelId` from the list of supported models found on the `Bedrock Tunnel` README file [here](https://github.com/jparkerweb/bedrock-tunnel?tab=readme-ov-file#supported-models); The `/models` enpoint of this server will also return a list of supported models.
+  - `model`: This can be either the `modelName` or `modelId` from the list of supported models found on the `Bedrock Wrapper` README file [here](https://github.com/jparkerweb/bedrock-wrapper?tab=readme-ov-file#supported-models); The `/models` enpoint of this server will also return a list of supported models.
 
 ---
 
@@ -133,10 +133,10 @@ for await (const chunk of chatCompletion) {
 
 Point your browser to the root of your endpoint server to view the info page: (example: `http://localhost`)  
 
-<img src="docs/bedrock-tunnel-endpoint.jpg" style="max-width:700px">
+<img src="docs/bedrock-proxy-endpoint.png" style="max-width:700px">
 
 ---
 
 ### Note
 
-Alternativly you can incorporate 🪨 <a href="https://github.com/jparkerweb/bedrock-tunnel" target="bedrockTunnel">`Bedrock Tunnel`</a> core directly into your code base. If you would like to explore that option checkout the npm package here: https://www.npmjs.com/package/bedrock-tunnel
+Alternativly you can incorporate 🪨 <a href="https://github.com/jparkerweb/bedrock-wrapper" target="bedrockWrapper">`Bedrock Wrapper`</a> core directly into your code base. If you would like to explore that option checkout the npm package here: https://www.npmjs.com/package/bedrock-wrapper
