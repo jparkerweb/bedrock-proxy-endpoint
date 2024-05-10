@@ -186,10 +186,10 @@ app.post('/chat/completions', async (req, res) => {
             completeResponse += jsonResponse.generation;
         }
         // create a data object and send to the client
-        const data = {choices: [{delta: {
+        const data = {choices: [{message: {
             content: completeResponse
         }}]};
-        res.write(`data: ${JSON.stringify(data)}\n\n`);
+        res.write(JSON.stringify(data));
         res.end()
     }
 });
