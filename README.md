@@ -47,15 +47,18 @@ Before getting started, make sure you have the following installed:
 * Update the `.env` file in the root directory of the project with the following
   environment variables based on your desired configuration:
 
-    | key             | value type | example           | notes                       |
-    |-----------------|------------|-------------------|-----------------------------|
-    | CONSOLE_LOGGING | boolean    | false             | show realtime logs          |
-    | HTTP_ENABLED    | boolean    | true              | start s HTTP server         |
-    | HTTP_PORT       | integer    | 80                | HTTP server port            |
-    | HTTPS_ENABLED   | boolean    | false             | start a HTTPS server        |
-    | HTTPS_PORT      | integer    | 443               | HTTPS server port           |
-    | HTTPS_KEY_PATH  | string     | ./path/mykey.key  | path to key file for HTTPS  |
-    | HTTPS_CERT_PATH | string     | ./path/mycert.pem | path to cert file for HTTPS |
+    | key                        | value type | example                   | notes                          |
+    |----------------------------|------------|---------------------------|--------------------------------|
+    | CONSOLE_LOGGING            | boolean    | false                     | Show realtime logs             |
+    | HTTP_ENABLED               | boolean    | true                      | Start a HTTP server            |
+    | HTTP_PORT                  | integer    | 80                        | HTTP server port               |
+    | HTTPS_ENABLED              | boolean    | false                     | Start a HTTPS server           |
+    | HTTPS_PORT                 | integer    | 443                       | HTTPS server port              |
+    | HTTPS_KEY_PATH             | string     | ./path/mykey.key          | Path to key file for HTTPS     |
+    | HTTPS_CERT_PATH            | string     | ./path/mycert.pem         | Path to cert file for HTTPS    |
+    | IP_RATE_LIMIT_ENABLED      | boolean    | true                      | Enable rate limiting by IP     |
+    | IP_RATE_LIMIT_WINDOW_MS    | integer    | 60000                     | Window in milliseconds         |
+    | IP_RATE_LIMIT_MAX_REQUESTS | integer    | 100                       | Max requests per IP per window |
 
 ---
 

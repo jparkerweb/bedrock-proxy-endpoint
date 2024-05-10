@@ -16,6 +16,9 @@ const HTTPS_ENABLED = toBoolean(process.env.HTTPS_ENABLED);
 const HTTPS_PORT = process.env.HTTPS_PORT;
 const HTTPS_KEY_PATH = process.env.HTTPS_KEY_PATH;
 const HTTPS_CERT_PATH = process.env.HTTPS_CERT_PATH;
+const IP_RATE_LIMIT_ENABLED = toBoolean(process.env.IP_RATE_LIMIT_ENABLED);
+const IP_RATE_LIMIT_WINDOW_MS = parseInt(process.env.IP_RATE_LIMIT_WINDOW_MS);
+const IP_RATE_LIMIT_MAX_REQUESTS = parseInt(process.env.IP_RATE_LIMIT_MAX_REQUESTS);
 
 // --------------------------------------------
 // -- import functions from bedrock-wrapper  --
@@ -35,6 +38,7 @@ console.log("");
 // -----------------------------------
 import express from 'express';
 import bodyParser from 'body-parser';
+import rateLimit from 'express-rate-limit';
 import { fileURLToPath } from 'url';
 import https from 'https';
 import http from 'http';
@@ -45,6 +49,25 @@ import { stdout } from 'process';
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(bodyParser.json());
+
+// ------------------------------------
+// -- setup rate limiting middleware --
+// ------------------------------------
+if (IP_RATE_LIMIT_ENABLED) {
+    const limiter = rateLimit({
+        windowMs: IP_RATE_LIMIT_WINDOW_MS,
+        max: IP_RATE_LIMIT_MAX_REQUESTS
+    });
+    app.use(limiter);
+}
+
+// -------------------------------
+// -- error handling middleware --
+// -------------------------------
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
 
 
 // -------------------
