@@ -65,8 +65,15 @@ if (IP_RATE_LIMIT_ENABLED) {
 // -- error handling middleware --
 // -------------------------------
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
+    if (err.code === 'ECONNRESET') {
+        console.warn('Connection reset by peer');
+        res.status(500).send('Connection reset by peer');
+    } else if (err.headersSent) {
+        return next(err);
+    } else {
+        console.error(err.stack);
+        res.status(500).send('Something broke!');
+    }
 });
 
 
