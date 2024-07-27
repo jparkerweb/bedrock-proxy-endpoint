@@ -179,12 +179,12 @@ app.post('/chat/completions', async (req, res) => {
     // create a variable to hold the complete response
     let completeResponse = '';
 
-    // check if the call is streamed
-    if (openaiChatCompletionsCreateObject.stream) {
-        // -------------------
-        // -- streamed call --
-        // -------------------
-        try {
+    try {
+        // check if the call is streamed
+        if (openaiChatCompletionsCreateObject.stream) {
+            // -------------------
+            // -- streamed call --
+            // -------------------
             for await (const chunk of bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING })) {
                 // collect the response chunks
                 completeResponse += chunk;
@@ -196,31 +196,38 @@ app.post('/chat/completions', async (req, res) => {
                 // log the response to the console
                 if (CONSOLE_LOGGING) { stdout.write(chunk); }
             }
-        } catch (error) {
-            console.error("Error during streaming:", error);
-            res.status(500).send("Server error while streaming");
-        } finally {
+            res.end();
+        } else {
+            // ---------------------
+            // -- unstreamed call --
+            // ---------------------
+            const response = await bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING });
+            for await (const data of response) {
+                // decode and parse the response data
+                const jsonString = new TextDecoder().decode(data.body);
+                const jsonResponse = JSON.parse(jsonString);
+                // collect the response chunks
+                completeResponse += jsonResponse.generation;
+            }
+            // create a data object and send to the client
+            const data = {choices: [{message: {
+                content: completeResponse
+            }}]};
+            res.write(JSON.stringify(data));
             res.end();
         }
-        res.end();
-    } else {
-        // ---------------------
-        // -- unstreamed call --
-        // ---------------------
-        const response = await bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING });
-        for await (const data of response) {
-            // decode and parse the response data
-            const jsonString = new TextDecoder().decode(data.body);
-            const jsonResponse = JSON.parse(jsonString);
-            // collect the response chunks
-            completeResponse += jsonResponse.generation;
+    } catch (error) {
+        if (error.name === 'ThrottlingException') {
+            console.error("Error during streaming:", error);
+            if (!res.headersSent) {
+                res.status(429).send("Too many requests, please wait before trying again.");
+            }
+        } else {
+            console.error("Error during request processing:", error);
+            if (!res.headersSent) {
+                res.status(500).send("Server error during request processing.");
+            }
         }
-        // create a data object and send to the client
-        const data = {choices: [{message: {
-            content: completeResponse
-        }}]};
-        res.write(JSON.stringify(data));
-        res.end()
     }
 });
 
