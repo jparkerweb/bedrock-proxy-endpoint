@@ -109,6 +109,7 @@ const messages = [
 ];
 
 const baseURL = "http://localhost";
+// this is only an example apiKey
 const apiKey = "us-west-2.AKIAWSGBPOAB34JZUEPP.ySssDeZBXGab+eqeaAxblSL+iEc/CS8Ff1HW3VV7"
 
 const openai = new OpenAI({
