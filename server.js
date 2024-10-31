@@ -203,11 +203,8 @@ app.post('/chat/completions', async (req, res) => {
             // ---------------------
             const response = await bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING });
             for await (const data of response) {
-                // decode and parse the response data
-                const jsonString = new TextDecoder().decode(data.body);
-                const jsonResponse = JSON.parse(jsonString);
-                // collect the response chunks
-                completeResponse += jsonResponse.generation;
+                // collect the response
+                completeResponse += data;
             }
             // create a data object and send to the client
             const data = {choices: [{message: {
