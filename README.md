@@ -118,7 +118,7 @@ const openai = new OpenAI({
 });
 const chatCompletion = await openai.chat.completions.create({
     messages: messages,
-    model: "Llama-3-70b",
+    model: "Claude-3-5-Sonnet-v2",
     max_tokens: 800,
     temperature: 0.4,
     top_p: 0.7,
