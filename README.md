@@ -144,3 +144,8 @@ Point your browser to the root of your endpoint server to view the info page: (e
 ### Note
 
 Alternativly you can incorporate 🪨 <a href="https://github.com/jparkerweb/bedrock-wrapper" target="bedrockWrapper">`Bedrock Wrapper`</a> core directly into your code base. If you would like to explore that option checkout the npm package here: https://www.npmjs.com/package/bedrock-wrapper
+
+---
+
+Please consider sending me a tip to support my work 😀
+# [🍵 tip me here](https://ko-fi.com/jparkerweb)
