@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2024-11-21 - Bedrock Wrapper v2.1.0
+### Added
+- Support for "Anthropic Claude 3.5 Haiku"
 
 ## [2.0.0] - 2024-10-31 - Bedrock Wrapper v2.0.0
 ### Added
