@@ -1,7 +1,14 @@
- # 🔀 Bedrock Proxy Endpoint
- Spin up your own custom OpenAI API server endpoint for easy AWS Bedrock LLM text inference (using standard `baseUrl`, and `apiKey` params)
+# 🔀 Bedrock Proxy Endpoint
+Spin up your own custom OpenAI API server endpoint for easy AWS Bedrock LLM text inference (using standard `baseUrl`, and `apiKey` params)
 
- ---
+---
+
+### Maintained by
+<a href="https://www.equilllabs.com">
+  <img src="https://raw.githubusercontent.com/jparkerweb/eQuill-Labs/refs/heads/main/src/static/images/logo-text-outline.png" alt="eQuill Labs" height="40">
+</a>
+
+---
 
 ### Why Bedrock Proxy Endpoint?
 
