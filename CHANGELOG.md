@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2025-01-01 - Bedrock Wrapper v2.2.0
+### Added
+- Support for Llama 3.3 70b
+
 ## [2.1.0] - 2024-11-21 - Bedrock Wrapper v2.1.0
 ### Added
 - Support for "Anthropic Claude 3.5 Haiku"
