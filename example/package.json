@@ -1,0 +1,19 @@
+{
+  "name": "bedrock-proxy-endpoint-example",
+  "version": "1.0.0",
+  "description": "Example scripts for bedrock-proxy-endpoint",
+  "main": "index.js",
+  "scripts": {
+    "clean": "npx rimraf node_modules package-lock.json && npm install",
+    "example": "node --no-deprecation example.js",
+    "example-vision": "node --no-deprecation example-vision.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "openai": "^4.85.4"
+  }
+}

@@ -1,15 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [2.2.0] - 2025-01-01 - Bedrock Wrapper v2.2.0
+## [2.3.0] - 2025-02-27 - Claude Sonnet 3.7 + Vision
+### Added
+- Support for Claude Sonnet 3.7
+- Support for Clause Sonnet 3.7 Thinking
+- Support for Claude Sonnet 3.x Vision
+
+## [2.2.0] - 2025-01-01 - Llama 3.3 70b
 ### Added
 - Support for Llama 3.3 70b
 
-## [2.1.0] - 2024-11-21 - Bedrock Wrapper v2.1.0
+## [2.1.0] - 2024-11-21 - Claude Haiku 3.5
 ### Added
 - Support for "Anthropic Claude 3.5 Haiku"
 
-## [2.0.0] - 2024-10-31 - Bedrock Wrapper v2.0.0
+## [2.0.0] - 2024-10-31 - Claude
 ### Added
 - Updated to use Bedrock Wrapper v2.0.0
 - Model support for:

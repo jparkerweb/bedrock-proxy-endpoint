@@ -19,6 +19,7 @@ const HTTPS_CERT_PATH = process.env.HTTPS_CERT_PATH;
 const IP_RATE_LIMIT_ENABLED = toBoolean(process.env.IP_RATE_LIMIT_ENABLED);
 const IP_RATE_LIMIT_WINDOW_MS = parseInt(process.env.IP_RATE_LIMIT_WINDOW_MS);
 const IP_RATE_LIMIT_MAX_REQUESTS = parseInt(process.env.IP_RATE_LIMIT_MAX_REQUESTS);
+const MAX_REQUEST_BODY_SIZE = process.env.MAX_REQUEST_BODY_SIZE || '1mb';
 
 // --------------------------------------------
 // -- import functions from bedrock-wrapper  --
@@ -48,7 +49,7 @@ import { stdout } from 'process';
 
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: MAX_REQUEST_BODY_SIZE }));
 
 // ------------------------------------
 // -- setup rate limiting middleware --
@@ -123,7 +124,8 @@ app.post('/chat/completions', async (req, res) => {
         max_tokens = 800,
         temperature = 0.1,
         top_p = 0.9,
-        stream = true
+        stream = true,
+        include_thinking_data = false
     } = req.body;
 
     // validate messages array exists
@@ -167,6 +169,7 @@ app.post('/chat/completions', async (req, res) => {
         stream: stream,
         temperature: temperature,
         top_p: top_p,
+        include_thinking_data: include_thinking_data
     };
 
     // set the response headers

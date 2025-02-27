@@ -1,11 +1,13 @@
 {
   "name": "bedrock-proxy-endpoint",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "description": "🔀 Bedrock Proxy Endpoint ⇢ Spin up your own custom OpenAI API server endpoint for easy AWS Bedrock inference (using standard `baseUrl`, and `apiKey` params)",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf node_modules && rm -rf package-lock.json && npm install"
+    "clean": "npx rimraf node_modules && npx rimraf package-lock.json && npm install",
+    "server": "node --no-deprecation server.js",
+    "start": "node --no-deprecation server.js"
   },
   "keywords": [
     "openai",
@@ -20,10 +22,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bedrock-wrapper": "^2.2.0",
+    "bedrock-wrapper": "^2.3.0",
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-jparkerweb:jparkerweb/bedrock-proxy-endpoint.git"
   }
 }
