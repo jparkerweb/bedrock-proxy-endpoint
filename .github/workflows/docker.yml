@@ -3,19 +3,27 @@ name: Build and publish Docker image to GHCR
 on:
   push:
     tags:
-      - '*'     # Triggers whenever a new tag is pushed. Adjust the pattern as needed.
+      - '*'   # Triggers whenever a new tag is created. Adjust as needed.
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read        # Allows reading the repository contents
-      packages: write       # Allows pushing packages (Docker images) to GHCR
+      contents: read
+      packages: write
 
     steps:
-      - name: Check out the repository
+      - name: Check out repository
         uses: actions/checkout@v3
+
+      # 1) Convert GitHub repo name to lowercase and export as env variable
+      - name: Convert repository name to lowercase
+        id: lowercase_repo
+        run: |
+          # GITHUB_REPOSITORY looks like "OrgName/RepoName"
+          # Convert it entirely to lowercase using Bash parameter expansion:
+          echo "REPO_LOWER=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
 
       - name: Log in to GHCR
         uses: docker/login-action@v2
@@ -24,12 +32,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # 2) Build and push using the lowercased repo name
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile              # Path to your Dockerfile
-          push: true                      # Push the image after building
+          file: ./Dockerfile
+          push: true
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+            ghcr.io/${{ env.REPO_LOWER }}:latest
+            ghcr.io/${{ env.REPO_LOWER }}:${{ github.ref_name }}
