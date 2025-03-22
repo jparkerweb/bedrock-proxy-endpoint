@@ -1,16 +1,14 @@
-FROM node:22.14.0
-
-# Create and change to the app directory
+# Use a builder image to install dependencies and compile the application
+FROM node:22.14.0 AS builder
 WORKDIR /app
-
-# Copy package files to the container
 COPY package*.json ./
-
-# Install project dependencies
 RUN npm install
-
-# Copy remaining project files
 COPY . .
+
+# Use a smaller runtime image to run the application
+FROM node:22.14.0-slim
+WORKDIR /app
+COPY --from=builder /app .
 
 # Define the command to run your app using npm
 ENTRYPOINT ["npm", "run", "start"]
