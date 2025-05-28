@@ -1,21 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [2.4.0] - 2025-03-29 - Docker Builds
-- Support Docker Builds
-  - `.dockerignore`
-    -Added .env and node_modules to the .dockerignore file to exclude them from the Docker image.
-  - `.github/workflows/docker.yml`
-    - Created a new GitHub Actions workflow to build and publish Docker images to GHCR.
-    - The workflow is triggered on push events to tags.
-    - The workflow converts the repository name to lowercase.
-    - The workflow logs into GHCR using GitHub Actions secrets.
-    - The workflow builds and pushes the Docker image with 'latest' and tag-based tags.
-  - `Dockerfile`
-    - Created a Dockerfile to define the application's Docker image.
-    - The Dockerfile uses node:22.14.0 as the base image.
-    - The Dockerfile sets the working directory to /app.
-    - The Dockerfile copies package*.json, installs dependencies, copies the remaining project files, and defines the start command.
+## [2.3.1] - 2025-05-28
+### Added
+- Updated to use Bedrock Wrapper v2.3.1
+  - Support for Claude Sonnet 4
+  - Support for Claude Opus 4
 
 ## [2.3.0] - 2025-02-27 - Claude Sonnet 3.7 + Vision
 ### Added
