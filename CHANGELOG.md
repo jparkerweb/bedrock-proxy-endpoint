@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.4.0] - 2025-07-24
+### Added
+- Updated to use Bedrock Wrapper v2.4.0
+- Support for Amazon Nova models:
+  - Amazon Nova Micro (text-only, ultra-low latency)
+  - Amazon Nova Lite (multimodal, low-cost)
+  - Amazon Nova Pro (multimodal, high capability)
+
 ## [2.3.1] - 2025-05-28
 ### Added
 - Updated to use Bedrock Wrapper v2.3.1
