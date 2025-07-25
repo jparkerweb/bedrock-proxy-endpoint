@@ -1,9 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [2.4.0] - 2025-07-24
+## [2.4.1] - 2025-07-24
 ### Added
-- Updated to use Bedrock Wrapper v2.4.0
+- Updated to use Bedrock Wrapper v2.4.1\
+- Vision support for Claude 3 Haiku
 - Support for Amazon Nova models:
   - Amazon Nova Micro (text-only, ultra-low latency)
   - Amazon Nova Lite (multimodal, low-cost)
