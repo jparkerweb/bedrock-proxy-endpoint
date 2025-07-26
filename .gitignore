@@ -2,3 +2,6 @@
 /node_modules
 .gemini
 .claude
+coverage/
+*.log
+logs/

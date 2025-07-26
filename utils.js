@@ -19,6 +19,13 @@ export function toBoolean(str = 'false') {
 // -- AWS Creds Extractor --
 // -------------------------
 export function extractAWSCreds(token) {
+    if (!token || typeof token !== 'string') {
+        return {
+            error: true,
+            message: "Invalid AWS API key"
+        };
+    }
+
     const keyParts = token.split(".")
 
     if (keyParts.length !== 3 || !keyParts[1].startsWith("AKIA") || keyParts[1].length !== 20){
