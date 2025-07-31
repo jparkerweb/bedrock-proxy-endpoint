@@ -31,12 +31,12 @@ async function main() {
     try {
         const chatCompletion = await openai.chat.completions.create({
             messages: messages,
-            model: "Claude-3-7-Sonnet-Thinking",
+            model: "Claude-3-7-Sonnet-Thinking", // Try: "Claude-4-Sonnet", "Claude-4-Opus", "Claude-4-Sonnet-Thinking", "Claude-4-Opus-Thinking"
             max_tokens: 2048,
             temperature: 0.4,
             top_p: 0.7,
             stream: true,
-            include_thinking_data: true,
+            include_thinking_data: true, // Works with thinking models
         });
 
         if (chatCompletion) {

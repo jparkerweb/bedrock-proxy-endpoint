@@ -1,6 +1,28 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.4.3] - 2025-07-31
+### Added
+- Updated to use Bedrock Wrapper v2.4.3
+- Refined stop sequences support with model-specific limitations:
+  - Claude models: Full support (up to 8,191 sequences)
+  - Nova models: Full support (up to 4 sequences) 
+  - Mistral models: Full support (up to 10 sequences)
+  - Llama models: No stop sequences support (AWS Bedrock limitation)
+- Improved error handling for early response termination
+- Fixed Nova model configuration conflicts
+
+## [2.4.2] - 2025-07-31
+### Added
+- Updated to use Bedrock Wrapper v2.4.2
+- Support for Claude 4 models:
+  - Claude-4-Opus (with image support)
+  - Claude-4-Opus-Thinking (with image support)
+  - Claude-4-Sonnet (with image support)  
+  - Claude-4-Sonnet-Thinking (with image support)
+- Stop sequences support (`stop_sequences` parameter)
+- Compatible with OpenAI's `stop` parameter for controlling generation stopping points
+
 ## [2.4.1] - 2025-07-24
 ### Added
 - Updated to use Bedrock Wrapper v2.4.1\

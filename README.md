@@ -87,11 +87,13 @@ Before getting started, make sure you have the following installed:
   - `messages`: Array of objects in role / content format.
   - `model`: This is the `modelName` from the list of supported models found on the `Bedrock Wrapper` README file [here](https://github.com/jparkerweb/bedrock-wrapper?tab=readme-ov-file#supported-models); The `/models` enpoint of this server will also return a list of supported models.
   - `include_thinking_data`: _Optional_ boolean parameter that when set to `true` will include the model's thinking process in the response (only used with thinking models such as `Claude-3-7-Sonnet-Thinking`).
+  - `stop` or `stop_sequences`: _Optional_ parameter to specify text sequences that will cause the model to stop generating (e.g., `["STOP", "END"]`).
 
 ### Example OpenAI API Call
 Look at the example folder for complete examples of how to use the server:
 - `example.js` - Basic text completion example
 - `example-vision.js` - Vision model example with image processing (image can be passed as a base64 string or a URL)
+- `example-stop-sequences.js` - Stop sequences example demonstrating how to control where generation stops
 
 ```javascript
 import OpenAI from 'openai';
@@ -123,12 +125,12 @@ async function main() {
     try {
         const chatCompletion = await openai.chat.completions.create({
             messages: messages,
-            model: "Claude-3-7-Sonnet-Thinking",
+            model: "Claude-4-Sonnet",
             max_tokens: 2048,
             temperature: 0.4,
             top_p: 0.7,
             stream: true,
-            include_thinking_data: true,  // Enable to include the model's thinking process in the response
+            include_thinking_data: false,  // Set to true for thinking models like "Claude-4-Sonnet-Thinking"
         });
 
         if (chatCompletion) {

@@ -8,18 +8,21 @@ Bedrock Proxy Endpoint is a proxy server that provides an OpenAI-compatible API 
 
 ## Common Development Commands
 
+### Installation & Setup
+```bash
+# Install dependencies (recommended for fresh installs)
+npm ci
+
+# Clean install dependencies (removes node_modules and package-lock.json)
+npm run clean
+```
+
 ### Running the Server
 ```bash
 # Start the server
 npm run server
 # or
 npm start
-```
-
-### Managing Dependencies
-```bash
-# Clean install dependencies
-npm run clean
 ```
 
 ## Architecture Overview
@@ -84,14 +87,20 @@ The project uses **Vitest** as the testing framework with comprehensive test cov
 
 #### Running Tests
 ```bash
-# Run all tests
+# Run all tests (watch mode)
 npm test
+
+# Run tests once and exit
+npm run test:run
 
 # Run tests in watch mode
 npm run test:watch
 
 # Run tests with coverage report
 npm run test:coverage
+
+# Run tests with UI interface
+npm run test:ui
 
 # Run a specific test file
 npm test -- utils.test.js
@@ -133,3 +142,9 @@ You can also manually test functionality:
 - Error handling includes specific ThrottlingException handling for rate limits
 - Vision models support base64 images and require larger MAX_REQUEST_BODY_SIZE
 - The `include_thinking_data` parameter enables thinking process output for compatible models
+- **Stop sequences support**: Use `stop` or `stop_sequences` parameter to control where generation stops
+  - Claude models: Full support (up to 8,191 sequences)
+  - Nova models: Full support (up to 4 sequences)
+  - Mistral models: Full support (up to 10 sequences)
+  - Llama models: NOT SUPPORTED (AWS Bedrock limitation)
+- **26+ supported models** including Claude 4 series (Opus, Sonnet) with thinking capabilities and image support

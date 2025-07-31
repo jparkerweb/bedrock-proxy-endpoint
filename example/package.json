@@ -13,7 +13,7 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "dotenv": "^16.6.1",
-    "openai": "^5.10.2"
+    "dotenv": "^17.2.1",
+    "openai": "^5.11.0"
   }
 }

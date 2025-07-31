@@ -28,7 +28,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bedrock-wrapper": "^2.4.1",
+    "bedrock-wrapper": "^2.4.3",
     "body-parser": "^1.20.3",
     "dotenv": "^17.2.1",
     "express": "^4.21.2",

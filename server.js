@@ -169,7 +169,9 @@ app.post('/chat/completions', async (req, res) => {
         stream: stream,
         temperature: temperature,
         top_p: top_p,
-        include_thinking_data: include_thinking_data
+        include_thinking_data: include_thinking_data,
+        ...(req.body.stop && { stop: req.body.stop }),
+        ...(req.body.stop_sequences && { stop_sequences: req.body.stop_sequences })
     };
 
     // set the response headers
