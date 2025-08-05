@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.4.4] - 2025-08-05
+### Added
+- Updated to use Bedrock Wrapper v2.4.4
+- Support for Claude Opus 4.1 models:
+  - Claude-4-1-Opus (with image support)
+  - Claude-4-1-Opus-Thinking (with image support)
+
 ## [2.4.3] - 2025-07-31
 ### Added
 - Updated to use Bedrock Wrapper v2.4.3
