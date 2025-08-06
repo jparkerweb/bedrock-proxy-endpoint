@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.4.5] - 2025-08-06
+### Added
+- Updated to use Bedrock Wrapper v2.4.5
+- Support for OpenAI GPT-OSS models on AWS Bedrock
+  - GPT-OSS-120B (120B parameter open weight model)
+  - GPT-OSS-20B (20B parameter open weight model)
+  - GPT-OSS-120B-Thinking (with reasoning tag preservation)
+  - GPT-OSS-20B-Thinking (with reasoning tag preservation)
+- `<reasoning>` tag processing for GPT-OSS thinking variants
+  - Regular GPT-OSS models automatically strip `<reasoning>` tags
+  - Thinking variants preserve `<reasoning>` tags (similar to Claude's `<think>` tags)
+
 ## [2.4.4] - 2025-08-05
 ### Added
 - Updated to use Bedrock Wrapper v2.4.4
