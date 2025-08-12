@@ -87,6 +87,7 @@ Before getting started, make sure you have the following installed:
   - `messages`: Array of objects in role / content format.
   - `model`: This is the `modelName` from the list of supported models found on the `Bedrock Wrapper` README file [here](https://github.com/jparkerweb/bedrock-wrapper?tab=readme-ov-file#supported-models); The `/models` enpoint of this server will also return a list of supported models.
   - `include_thinking_data`: _Optional_ boolean parameter that when set to `true` will include the model's thinking process in the response (only used with thinking models such as `Claude-3-7-Sonnet-Thinking`).
+  - `use_converse_api`: _Optional_ boolean parameter that when set to `true` will use AWS Bedrock's Converse API instead of the Invoke API. The Converse API provides a unified request/response format across all models, better conversation management, and cleaner multimodal handling. Defaults to `false` for backward compatibility.
   - `stop` or `stop_sequences`: _Optional_ parameter to specify text sequences that will cause the model to stop generating (e.g., `["STOP", "END"]`).
 
 ### Example OpenAI API Call
@@ -131,6 +132,7 @@ async function main() {
             top_p: 0.7,
             stream: true,
             include_thinking_data: false,  // Set to true for thinking models like "Claude-4-Sonnet-Thinking"
+            use_converse_api: false,  // Set to true to use the unified Converse API instead of Invoke API
         });
 
         if (chatCompletion) {

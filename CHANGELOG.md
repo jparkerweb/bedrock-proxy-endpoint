@@ -1,6 +1,27 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.5.0] - 2025-08-12
+### Added
+- Updated to use Bedrock Wrapper v2.5.0
+- Support for AWS Bedrock Converse API via `use_converse_api` parameter
+  - Optional boolean parameter that defaults to `false` for backward compatibility
+  - When set to `true`, uses the unified Converse API instead of Invoke API
+  - Provides consistent request/response format across all model families
+  - Simplifies conversation management and multimodal handling
+  - Better support for system prompts and tool use (where applicable)
+- Converse API benefits include:
+  - Unified API format across Claude, Nova, GPT-OSS, Llama, and Mistral models
+  - Cleaner handling of thinking models with proper `reasoningContent` extraction
+  - Simplified message format without model-specific prompt construction
+  - Native support for system prompts as a separate field
+
+### Technical Details
+- The `use_converse_api` parameter follows the same pattern as `include_thinking_data`
+- Passes through to bedrock-wrapper's `useConverseAPI` option
+- Works with both streaming and non-streaming responses
+- Maintains full backward compatibility when not specified or set to `false`
+
 ## [2.4.5] - 2025-08-06
 ### Added
 - Updated to use Bedrock Wrapper v2.4.5

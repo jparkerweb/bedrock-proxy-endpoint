@@ -52,6 +52,7 @@ async function main() {
             temperature: 0.4,
             top_p: 0.7,
             stream: true,
+            use_converse_api: true, // Set to true to use the unified Converse API (better consistency across models)
         });
 
         if (chatCompletion) {

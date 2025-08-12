@@ -96,7 +96,8 @@ async function demonstrateStopSequences() {
             max_tokens: 500,
             temperature: 1.0,
             stream: true,
-            stop_sequences: ["HALT", "FINISH"] // Will stop at either "HALT" or "FINISH"
+            stop_sequences: ["HALT", "FINISH"], // Will stop at either "HALT" or "FINISH"
+            use_converse_api: true, // Set to true to use the unified Converse API (better consistency across models)
         });
 
         console.log("User Prompt: ", user2);

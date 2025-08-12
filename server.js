@@ -125,7 +125,8 @@ app.post('/chat/completions', async (req, res) => {
         temperature = 0.1,
         top_p = 0.9,
         stream = true,
-        include_thinking_data = false
+        include_thinking_data = false,
+        use_converse_api = false
     } = req.body;
 
     // validate messages array exists
@@ -170,6 +171,7 @@ app.post('/chat/completions', async (req, res) => {
         temperature: temperature,
         top_p: top_p,
         include_thinking_data: include_thinking_data,
+        use_converse_api: use_converse_api,
         ...(req.body.stop && { stop: req.body.stop }),
         ...(req.body.stop_sequences && { stop_sequences: req.body.stop_sequences })
     };
@@ -190,7 +192,7 @@ app.post('/chat/completions', async (req, res) => {
             // -------------------
             // -- streamed call --
             // -------------------
-            for await (const chunk of bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING })) {
+            for await (const chunk of bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING, useConverseAPI: use_converse_api })) {
                 // collect the response chunks
                 completeResponse += chunk;
                 // create a data object and send to the client
@@ -206,7 +208,7 @@ app.post('/chat/completions', async (req, res) => {
             // ---------------------
             // -- unstreamed call --
             // ---------------------
-            const response = await bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING });
+            const response = await bedrockWrapper(awsCreds, openaiChatCompletionsCreateObject, { logging: CONSOLE_LOGGING, useConverseAPI: use_converse_api });
             for await (const data of response) {
                 // collect the response
                 completeResponse += data;

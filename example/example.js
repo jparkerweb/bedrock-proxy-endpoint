@@ -37,6 +37,7 @@ async function main() {
             top_p: 0.7,
             stream: true,
             include_thinking_data: true, // Works with thinking models
+            use_converse_api: true, // Set to true to use the unified Converse API (better consistency across models)
         });
 
         if (chatCompletion) {
