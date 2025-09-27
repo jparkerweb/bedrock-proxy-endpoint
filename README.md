@@ -46,6 +46,86 @@ Before getting started, make sure you have the following installed:
     npm ci
     ```
 
+### Docker Usage
+
+You can run Bedrock Proxy Endpoint using Docker in two ways:
+
+#### Option 1: Using Pre-built Image from GitHub Container Registry
+
+Pull and run the latest image from GHCR:
+
+```bash
+# Pull the latest image
+docker pull ghcr.io/jparkerweb/bedrock-proxy-endpoint:latest
+
+# Run with environment file
+docker run -d \
+  --name bedrock-proxy-endpoint \
+  -p 88:88 \
+  --env-file .env \
+  ghcr.io/jparkerweb/bedrock-proxy-endpoint:latest
+
+# Or run with inline environment variables
+docker run -d \
+  --name bedrock-proxy-endpoint \
+  -p 88:88 \
+  -e HTTP_ENABLED=true \
+  -e HTTP_PORT=88 \
+  -e CONSOLE_LOGGING=true \
+  ghcr.io/jparkerweb/bedrock-proxy-endpoint:latest
+```
+
+#### Option 2: Build and Run Locally
+
+Build the Docker image locally and run it:
+
+```bash
+# Build the image locally
+docker build -t bedrock-proxy-endpoint .
+
+# Run with environment file
+docker run -d \
+  --name bedrock-proxy-endpoint \
+  -p 88:88 \
+  --env-file .env \
+  bedrock-proxy-endpoint
+
+# Or run with custom port mapping
+docker run -d \
+  --name bedrock-proxy-endpoint \
+  -p 8080:8080 \
+  -e HTTP_PORT=8080 \
+  --env-file .env \
+  bedrock-proxy-endpoint
+```
+
+#### Docker Compose Example
+
+Create a `docker-compose.yml` file for easier management:
+
+```yaml
+version: '3.8'
+services:
+  bedrock-proxy-endpoint:
+    image: ghcr.io/jparkerweb/bedrock-proxy-endpoint:latest
+    # Or for local build: build: .
+    ports:
+      - "88:88"
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "const http = require('http'); const req = http.request({host: 'localhost', port: process.env.HTTP_PORT || 3000, timeout: 2000}, (res) => process.exit(res.statusCode === 200 ? 0 : 1)); req.on('error', () => process.exit(1)); req.end();"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+```
+
+Then run with:
+```bash
+docker-compose up -d
+```
+
 ### Configuration
 
 * Update the `.env` file in the root directory of the project with the following

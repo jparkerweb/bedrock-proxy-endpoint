@@ -13,7 +13,13 @@
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docker:build": "docker build -t bedrock-proxy-endpoint .",
+    "docker:clean": "docker stop bedrock-proxy-endpoint 2>/dev/null || true && docker rm bedrock-proxy-endpoint 2>/dev/null || true",
+    "docker:pull": "docker pull ghcr.io/jparkerweb/bedrock-proxy-endpoint:latest",
+    "docker:run:ghcr": "docker run -d --name bedrock-proxy-endpoint -p 88:88 --env-file .env ghcr.io/jparkerweb/bedrock-proxy-endpoint:latest",
+    "docker:run": "docker run -d --name bedrock-proxy-endpoint -p 88:88 --env-file .env bedrock-proxy-endpoint",
+    "docker:run:dev": "docker run -it --rm --name bedrock-proxy-endpoint-dev -p 88:88 --env-file .env bedrock-proxy-endpoint"
   },
   "keywords": [
     "openai",
@@ -30,7 +36,7 @@
   "dependencies": {
     "bedrock-wrapper": "^2.5.0",
     "body-parser": "^1.20.3",
-    "dotenv": "^17.2.1",
+    "dotenv": "^17.2.2",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.1"
   },

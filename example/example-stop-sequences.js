@@ -13,13 +13,9 @@ const messages = [
         role: "user",
         content: "Count from 1 to 10, putting each number on a new line.",
     },
-    {
-        role: "assistant",
-        content: "",
-    },
 ];
 
-const baseURL = "http://localhost:88"; // URL of the Bedrock Proxy Endpoint
+const baseURL = "http://127.0.0.1:88"; // URL of the Bedrock Proxy Endpoint
 const apiKey = `${AWS_REGION}.${AWS_ACCESS_KEY_ID}.${AWS_SECRET_ACCESS_KEY}` // Your AWS Creds / API Key
 
 const openai = new OpenAI({
@@ -46,10 +42,6 @@ async function demonstrateStopSequences() {
                 {
                     role: "user",
                     content: user1,
-                },
-                {
-                    role: "assistant",
-                    content: "",
                 }
             ],
             model: "Claude-4-Sonnet",
@@ -86,10 +78,6 @@ async function demonstrateStopSequences() {
                 {
                     role: "user",
                     content: user2,
-                },
-                {
-                    role: "assistant",
-                    content: "",
                 }
             ],
             model: "Nova-Pro",
@@ -127,10 +115,6 @@ async function demonstrateStopSequences() {
                 {
                     role: "user",  
                     content: user3,
-                },
-                {
-                    role: "assistant",
-                    content: "",
                 }
             ],
             model: "Mistral-Large",
@@ -167,10 +151,6 @@ async function demonstrateStopSequences() {
                 {
                     role: "user",
                     content: user4,
-                },
-                {
-                    role: "assistant",
-                    content: "",
                 }
             ],
             model: "Llama-3-1-8b",

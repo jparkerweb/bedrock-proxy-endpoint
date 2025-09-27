@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.6.0] - 2025-09-27
+### Added
+- Docker support
+  - Dockerfile and Docker commands added
+  - GitHub Actions workflow for Docker build and publish to GitHub Container Registry
+  - Documentation for Docker usage (docker run / docker compose)
+
 ## [2.5.0] - 2025-08-12
 ### Added
 - Updated to use Bedrock Wrapper v2.5.0

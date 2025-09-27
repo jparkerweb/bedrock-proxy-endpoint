@@ -25,6 +25,39 @@ npm run server
 npm start
 ```
 
+### Testing
+```bash
+# Run all tests (watch mode)
+npm test
+
+# Run tests once and exit
+npm run test:run
+
+# Run tests with coverage report
+npm run test:coverage
+
+# Run tests with UI interface
+npm run test:ui
+
+# Run a specific test file
+npm test -- utils.test.js
+```
+
+### Docker Commands
+```bash
+# Build Docker image locally
+npm run docker:build
+
+# Pull from GitHub Container Registry
+npm run docker:pull
+
+# Run container from GHCR
+npm run docker:run:ghcr
+
+# Run container from local build
+npm run docker:run
+```
+
 ## Architecture Overview
 
 ### Core Components
@@ -74,63 +107,22 @@ The server uses `.env` for configuration:
 - `IP_RATE_LIMIT_MAX_REQUESTS` - Max requests per IP per window
 - `MAX_REQUEST_BODY_SIZE` - Max request body size (for handling base64 images)
 
-### Adding New Models
+## Test Structure
+
+Tests use **Vitest** framework and are located in `tests/`:
+- `setup.js` - Test configuration and mocks
+- `utils.test.js` - Unit tests for utility functions
+- `server.test.js` - API endpoint tests
+- `fixtures/test-data.js` - Test data and mock responses
+
+## Adding New Models
 
 To add support for new AWS Bedrock models:
 1. Update the supported models list in the bedrock-wrapper dependency
 2. Test with the example scripts in `/example` directory
 3. Update CHANGELOG.md with the new model support
 
-### Testing
-
-The project uses **Vitest** as the testing framework with comprehensive test coverage for core functionality.
-
-#### Running Tests
-```bash
-# Run all tests (watch mode)
-npm test
-
-# Run tests once and exit
-npm run test:run
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run tests with coverage report
-npm run test:coverage
-
-# Run tests with UI interface
-npm run test:ui
-
-# Run a specific test file
-npm test -- utils.test.js
-```
-
-#### Test Structure
-```
-tests/
-├── setup.js              # Test configuration and mocks
-├── utils.test.js          # Unit tests for utility functions
-├── server.test.js         # API endpoint tests
-└── fixtures/              # Test data and mock responses
-    └── test-data.js
-```
-
-#### What's Tested
-- **Utils Functions**: `toBoolean()` and `extractAWSCreds()` with various inputs and edge cases
-- **API Endpoints**: All server endpoints with authentication, validation, and error handling
-- **Authentication**: AWS credential extraction and validation
-- **Request/Response**: Chat completion requests, streaming responses, and error scenarios
-
-#### Manual Testing
-You can also manually test functionality:
-1. Use the example scripts in `/example` to test functionality:
-   - `example.js` - Basic text completion with streaming
-   - `example-vision.js` - Vision model example with image processing
-2. Use the `/test/chat/completions` endpoint for quick tests
-3. Test different models by updating the `model` parameter in examples
-
-### Important Considerations
+## Important Implementation Details
 
 - The server uses ES modules (not CommonJS)
 - No TypeScript - pure JavaScript
@@ -142,6 +134,7 @@ You can also manually test functionality:
 - Error handling includes specific ThrottlingException handling for rate limits
 - Vision models support base64 images and require larger MAX_REQUEST_BODY_SIZE
 - The `include_thinking_data` parameter enables thinking process output for compatible models
+- The `use_converse_api` parameter enables AWS Bedrock's unified Converse API (defaults to false)
 - **Stop sequences support**: Use `stop` or `stop_sequences` parameter to control where generation stops
   - Claude models: Full support (up to 8,191 sequences)
   - Nova models: Full support (up to 4 sequences)

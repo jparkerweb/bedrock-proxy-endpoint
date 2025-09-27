@@ -13,13 +13,9 @@ const messages = [
         role: "user",
         content: "Describe why the OpenAI API standard is so great. Limit your response to five sentences.",
     },
-    {
-        role: "assistant",
-        content: "",
-    },
 ];
 
-const baseURL = "http://localhost:88"; // URL of the Bedrock Proxy Endpoint
+const baseURL = "http://127.0.0.1:88"; // URL of the Bedrock Proxy Endpoint
 const apiKey = `${AWS_REGION}.${AWS_ACCESS_KEY_ID}.${AWS_SECRET_ACCESS_KEY}` // Your AWS Creds / API Key
 
 const openai = new OpenAI({
