@@ -206,13 +206,13 @@ async function main() {
     try {
         const chatCompletion = await openai.chat.completions.create({
             messages: messages,
-            model: "Claude-4-Sonnet",
+            model: "Claude-4-5-Sonnet",
             max_tokens: 2048,
             temperature: 0.4,
             top_p: 0.7,
             stream: true,
-            include_thinking_data: false,  // Set to true for thinking models like "Claude-4-Sonnet-Thinking"
-            use_converse_api: false,  // Set to true to use the unified Converse API instead of Invoke API
+            include_thinking_data: false,  // Set to true for thinking models like "Claude-4-5-Sonnet-Thinking"
+            use_converse_api: true,  // Set to true to use the unified Converse API instead of Invoke API (default: false)
         });
 
         if (chatCompletion) {

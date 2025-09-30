@@ -44,7 +44,7 @@ async function demonstrateStopSequences() {
                     content: user1,
                 }
             ],
-            model: "Claude-4-Sonnet",
+            model: "Claude-4-5-Sonnet",
             max_tokens: 500,
             temperature: 1.0,
             stream: true,

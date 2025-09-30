@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.6.1] - 2025-09-30 (Claude Sonnet 4.5)
+### Added
+- Support for Claude Sonnet 4.5 models
+  - Claude-4-5-Sonnet
+  - Claude-4-5-Sonnet-Thinking
+
 ## [2.6.0] - 2025-09-27
 ### Added
 - Docker support
