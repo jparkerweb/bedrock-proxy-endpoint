@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.6.2] - 2025-10-16
+### Added
+- Support for Claude Haiku 4.5 models
+  - Claude-4-5-Haiku
+  - Claude-4-5-Haiku-Thinking
+
 ## [2.6.1] - 2025-09-30 (Claude Sonnet 4.5)
 ### Added
 - Support for Claude Sonnet 4.5 models
