@@ -5,7 +5,7 @@ Spin up your own custom OpenAI API server endpoint for easy AWS Bedrock LLM text
 
 ### Maintained by
 <a href="https://www.equilllabs.com">
-  <img src="https://raw.githubusercontent.com/jparkerweb/eQuill-Labs/refs/heads/main/src/static/images/logo-text-outline.png" alt="eQuill Labs" height="40">
+  <img src="https://raw.githubusercontent.com/jparkerweb/eQuill-Labs/refs/heads/main/src/static/images/logo-text-outline.png" alt="eQuill Labs" height="40" style="max-height: 40px">
 </a>
 
 ---

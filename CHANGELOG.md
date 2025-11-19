@@ -1,27 +1,37 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.7.0] - 2025-11-19
+### ✨ Added
+- Support for DeepSeek & Qwen 3 models
+  - DeepSeek-R1
+  - DeepSeek V3.1
+  - Qwen3 32b
+  - Qwen3 235b
+  - Qwen3 Coder 30b
+  - Qwen3 Coder 480b
+
 ## [2.6.2] - 2025-10-16
-### Added
+### ✨ Added
 - Support for Claude Haiku 4.5 models
   - Claude-4-5-Haiku
   - Claude-4-5-Haiku-Thinking
 
 ## [2.6.1] - 2025-09-30 (Claude Sonnet 4.5)
-### Added
+### ✨ Added
 - Support for Claude Sonnet 4.5 models
   - Claude-4-5-Sonnet
   - Claude-4-5-Sonnet-Thinking
 
 ## [2.6.0] - 2025-09-27
-### Added
+### ✨ Added
 - Docker support
   - Dockerfile and Docker commands added
   - GitHub Actions workflow for Docker build and publish to GitHub Container Registry
   - Documentation for Docker usage (docker run / docker compose)
 
 ## [2.5.0] - 2025-08-12
-### Added
+### ✨ Added
 - Updated to use Bedrock Wrapper v2.5.0
 - Support for AWS Bedrock Converse API via `use_converse_api` parameter
   - Optional boolean parameter that defaults to `false` for backward compatibility
@@ -35,14 +45,14 @@ All notable changes to this project will be documented in this file.
   - Simplified message format without model-specific prompt construction
   - Native support for system prompts as a separate field
 
-### Technical Details
+### 🛠️ Technical Details
 - The `use_converse_api` parameter follows the same pattern as `include_thinking_data`
 - Passes through to bedrock-wrapper's `useConverseAPI` option
 - Works with both streaming and non-streaming responses
 - Maintains full backward compatibility when not specified or set to `false`
 
 ## [2.4.5] - 2025-08-06
-### Added
+### ✨ Added
 - Updated to use Bedrock Wrapper v2.4.5
 - Support for OpenAI GPT-OSS models on AWS Bedrock
   - GPT-OSS-120B (120B parameter open weight model)
@@ -54,14 +64,14 @@ All notable changes to this project will be documented in this file.
   - Thinking variants preserve `<reasoning>` tags (similar to Claude's `<think>` tags)
 
 ## [2.4.4] - 2025-08-05
-### Added
+### ✨ Added
 - Updated to use Bedrock Wrapper v2.4.4
 - Support for Claude Opus 4.1 models:
   - Claude-4-1-Opus (with image support)
   - Claude-4-1-Opus-Thinking (with image support)
 
 ## [2.4.3] - 2025-07-31
-### Added
+### ✨ Added
 - Updated to use Bedrock Wrapper v2.4.3
 - Refined stop sequences support with model-specific limitations:
   - Claude models: Full support (up to 8,191 sequences)
@@ -72,7 +82,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Nova model configuration conflicts
 
 ## [2.4.2] - 2025-07-31
-### Added
+### ✨ Added
 - Updated to use Bedrock Wrapper v2.4.2
 - Support for Claude 4 models:
   - Claude-4-Opus (with image support)
@@ -83,8 +93,8 @@ All notable changes to this project will be documented in this file.
 - Compatible with OpenAI's `stop` parameter for controlling generation stopping points
 
 ## [2.4.1] - 2025-07-24
-### Added
-- Updated to use Bedrock Wrapper v2.4.1\
+### ✨ Added
+- Updated to use Bedrock Wrapper v2.4.1
 - Vision support for Claude 3 Haiku
 - Support for Amazon Nova models:
   - Amazon Nova Micro (text-only, ultra-low latency)
@@ -92,27 +102,27 @@ All notable changes to this project will be documented in this file.
   - Amazon Nova Pro (multimodal, high capability)
 
 ## [2.3.1] - 2025-05-28
-### Added
+### ✨ Added
 - Updated to use Bedrock Wrapper v2.3.1
   - Support for Claude Sonnet 4
   - Support for Claude Opus 4
 
 ## [2.3.0] - 2025-02-27 - Claude Sonnet 3.7 + Vision
-### Added
+### ✨ Added
 - Support for Claude Sonnet 3.7
 - Support for Clause Sonnet 3.7 Thinking
 - Support for Claude Sonnet 3.x Vision
 
 ## [2.2.0] - 2025-01-01 - Llama 3.3 70b
-### Added
+### ✨ Added
 - Support for Llama 3.3 70b
 
 ## [2.1.0] - 2024-11-21 - Claude Haiku 3.5
-### Added
+### ✨ Added
 - Support for "Anthropic Claude 3.5 Haiku"
 
 ## [2.0.0] - 2024-10-31 - Claude
-### Added
+### ✨ Added
 - Updated to use Bedrock Wrapper v2.0.0
 - Model support for:
   - Claude 3.5 Sonnet V2
@@ -122,7 +132,7 @@ All notable changes to this project will be documented in this file.
     > Note: This could be a breaking change for any clients that are expecting a JSON response from unstreamed responses
 
 ## [1.0.9] - 2024-09-25 - Lamma 3.2
-### Added
+### ✨ Added
 - Model support for:
   - Llama 3.2 1b
   - Llama 3.2 3b
@@ -131,14 +141,14 @@ All notable changes to this project will be documented in this file.
 
 
 ## [1.0.7] - 2024-07-24 - Lamma 3.1
-### Added
+### ✨ Added
 - Model support for:
   - Llama-3-1-8b
   - Llama-3-1-70b
 
 
 ## [1.0.3] - 2024-05-06 - Initial Stable Release
-### Added
+### ✨ Added
 - OpenAI API compatible proxy endpoint for AWS Bedrock
 - Support for HTTP and HTTPS servers
 - IP-based rate limiting
@@ -158,12 +168,12 @@ All notable changes to this project will be documented in this file.
 - Error handling middleware
 - Console logging toggle
 
-### Security
+### 🛡️ Security
 - HTTPS support with custom key and certificate paths
 - Rate limiting configuration options
 - AWS IAM authentication required for API access
 
-### Documentation
+### 📚 Documentation
 - Installation instructions
 - Configuration guide
 - Authentication details
