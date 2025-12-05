@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "npx rimraf node_modules package-lock.json && npm install",
     "example": "node --no-deprecation example.js",
-    "example-vision": "node --no-deprecation example-vision.js"
+    "example-vision": "node --no-deprecation example-vision.js",
+    "test": "npm run example && npm run example-vision"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,6 @@
   "type": "module",
   "dependencies": {
     "dotenv": "^17.2.1",
-    "openai": "^6.9.1"
+    "openai": "^6.10.0"
   }
 }

@@ -27,7 +27,7 @@ async function main() {
     try {
         const chatCompletion = await openai.chat.completions.create({
             messages: messages,
-            model: "Claude-4-5-Sonnet-Thinking", // Try: "Claude-4-Sonnet", "Claude-4-Opus", "Claude-4-Sonnet-Thinking", "Claude-4-Opus-Thinking"
+            model: "Claude-4-5-Opus-Thinking",
             max_tokens: 2048,
             temperature: 0.4,
             top_p: 0.4,
