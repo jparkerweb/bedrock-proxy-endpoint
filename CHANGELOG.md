@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.10.0] - 2026-02-20 (Claude Opus 4.6 & Sonnet 4.6)
+
+### ✨ Added
+
+- Support for Claude Opus 4.6 and Claude Sonnet 4.6 models
+  - Claude-Opus-4-6 (128K max output tokens, vision support, cross-region inference profile)
+  - Claude-Sonnet-4-6 (64K max output tokens, vision support, cross-region inference profile)
+
+## [2.9.0] - 2026-01-08 (Llama 4 Models)
+
+### ✨ Added
+
+- Support for Llama 4 Scout and Maverick models
+  - Llama-4-Scout-17b (vision support, 2K max output tokens)
+  - Llama-4-Maverick-17b (vision support, 2K max output tokens)
+- First Llama models with multimodal/vision capabilities in this wrapper
+- Cross-region inference profile IDs (us.meta.llama4-*)
+
 ## [2.8.0] - 2025-12-05 (New Models: Claude Opus 4.5, Gemma, Kimi, MiniMax, Mistral, Nova)
 
 ### ✨ Added

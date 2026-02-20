@@ -34,7 +34,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bedrock-wrapper": "^2.8.0",
+    "bedrock-wrapper": "^2.10.0",
     "body-parser": "^2.2.1",
     "dotenv": "^17.2.3",
     "express": "^4.22.1",
